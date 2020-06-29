@@ -1,7 +1,5 @@
-#!/bin/bash
-
 API="http://localhost:4741"
-URL_PATH="/lists"
+URL_PATH="/songs"
 
 curl "${API}${URL_PATH}" \
   --include \
@@ -9,10 +7,10 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "list": {
-      "description": "'"${DESCRIPTION}"'",
+    "song": {
       "title": "'"${TITLE}"'",
-      "id": "'"${USER_ID}"'"
+      "artist": "'"${ARTIST}"'",
+      "id": "'"${LIST_ID}"'"
     }
   }'
 

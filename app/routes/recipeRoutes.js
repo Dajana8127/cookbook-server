@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for examples
-const List = require('../models/list')
+const Recipe = require('../models/recipe')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -29,42 +29,42 @@ const router = express.Router()
 
 // INDEX
 // GET /examples
-router.get('/lists', requireToken, (req, res, next) => {
-  List.find({'owner': req.user.id})
-    .then(lists => {
+router.get('/recipes', requireToken, (req, res, next) => {
+  Recipe.find({'owner': req.user.id})
+    .then(recipes => {
       // `examples` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return lists.map(list => list.toObject())
+      return recipes.map(recipe => recipe.toObject())
     })
     // respond with status 200 and JSON of the examples
-    .then(lists => res.status(200).json({ lists: lists }))
+    .then(recipes => res.status(200).json({ recipes: recipes }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
 
 // SHOW
 // GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/lists/:id', requireToken, (req, res, next) => {
+router.get('/recipes/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  List.findById(req.params.id)
+  Recipe.findById(req.params.id)
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "example" JSON
-    .then(list => res.status(200).json({ list: list.toObject() }))
+    .then(recipe => res.status(200).json({ recipe: recipe.toObject() }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
 
 // CREATE
 // POST /examples
-router.post('/lists', requireToken, (req, res, next) => {
+router.post('/recipes', requireToken, (req, res, next) => {
   // set owner of new example to be current user
-  req.body.list.owner = req.user.id
+  req.body.recipe.owner = req.user.id
 
-  List.create(req.body.list)
+  Recipe.create(req.body.recipe)
     // respond to succesful `create` with status 201 and JSON of new "example"
-    .then(list => {
-      res.status(201).json({ list: list.toObject() })
+    .then(recipe => {
+      res.status(201).json({ recipe: recipe.toObject() })
     })
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
@@ -74,20 +74,20 @@ router.post('/lists', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /examples/5a7db6c74d55bc51bdf39793
-router.patch('/lists/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/recipes/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  delete req.body.list.owner
+  delete req.body.recipe.owner
 
-  List.findById(req.params.id)
+  Recipe.findById(req.params.id)
     .then(handle404)
-    .then(list => {
+    .then(recipe => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
-      requireOwnership(req, list)
+      requireOwnership(req, recipe)
 
       // pass the result of Mongoose's `.update` to the next `.then`
-      return list.updateOne(req.body.list)
+      return recipe.updateOne(req.body.recipe)
     })
     // if that succeeded, return 204 and no JSON
     .then(() => res.sendStatus(204))
@@ -97,14 +97,14 @@ router.patch('/lists/:id', requireToken, removeBlanks, (req, res, next) => {
 
 // DESTROY
 // DELETE /examples/5a7db6c74d55bc51bdf39793
-router.delete('/lists/:id', requireToken, (req, res, next) => {
-  List.findById(req.params.id)
+router.delete('/recipes/:id', requireToken, (req, res, next) => {
+  Recipe.findById(req.params.id)
     .then(handle404)
-    .then(list => {
+    .then(recipe => {
       // throw an error if current user doesn't own `example`
-      requireOwnership(req, list)
+      requireOwnership(req, recipe)
       // delete the example ONLY IF the above didn't throw
-      list.deleteOne()
+      recipe.deleteOne()
     })
     // send back 204 and no content if the deletion succeeded
     .then(() => res.sendStatus(204))

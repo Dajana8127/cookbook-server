@@ -1,5 +1,7 @@
+#!/bin/bash
+
 API="http://localhost:4741"
-URL_PATH="/songs"
+URL_PATH="/recipes"
 
 curl "${API}${URL_PATH}" \
   --include \
@@ -7,10 +9,11 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "song": {
+    "recipe": {
       "title": "'"${TITLE}"'",
-      "artist": "'"${ARTIST}"'",
-      "id": "'"${LIST_ID}"'"
+      "ingredients": "'"${INGREDIENTS}"'",
+      "steps": "'"${STEPS}"'"
+      "id": "'"${USER_ID}"'"
     }
   }'
 

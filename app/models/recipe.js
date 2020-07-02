@@ -1,16 +1,19 @@
 const mongoose = require('mongoose')
 
-const songSchema = require('./song')
+// const songSchema = require('./song')
 
-const listSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
   },
-  description: {
+  ingredients: {
     type: String
   },
-  songs: [songSchema],
+  steps: {
+    type: String
+  },
+  // reviews: [reviewSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -20,4 +23,4 @@ const listSchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('List', listSchema)
+module.exports = mongoose.model('Recipe', recipeSchema)

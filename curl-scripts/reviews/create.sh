@@ -10,7 +10,8 @@
 #     "song": {
 #       "title": "'"${TITLE}"'",
 #       "artist": "'"${ARTIST}"'",
-#       "id": "'"${LIST_ID}"'"
+#       "recipe_id": "'"${RECIPE_ID}"'",
+#       "owner_id": "'"${OWNER_ID}"'"
 #     }
 #   }'
 #

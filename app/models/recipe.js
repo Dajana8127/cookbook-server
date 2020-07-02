@@ -13,7 +13,7 @@ const recipeSchema = new mongoose.Schema({
   steps: {
     type: String
   },
-  // songs: [songSchema],
+  // reviews: [reviewSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

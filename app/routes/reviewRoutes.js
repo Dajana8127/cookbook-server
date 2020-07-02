@@ -4,8 +4,8 @@
 // const passport = require('passport')
 //
 // // pull in Mongoose model for examples
-// // const Song = require('../models/song')
-// const List = require('../models/list')
+// // const Review = require('../models/review')
+// const Recipe = require('../models/recipe')
 //
 // // this is a collection of methods that help us detect situations when we need
 // // to throw a custom error
@@ -28,41 +28,41 @@
 // // instantiate a router (mini app that only handles routes)
 // const router = express.Router()
 //
-// router.post('/songs', requireToken, (req, res, next) => {
+// router.post('/reviews', requireToken, (req, res, next) => {
 //   // set owner of new example to be current user
-//   const songData = req.body.song
-//   const listId = songData.id
-//   List.findById(listId)
+//   const reviewData = req.body.review
+//   const recipeId = reviewData.id
+//   Recipe.findById(recipeId)
 //     .then(handle404)
-//     .then(list => {
-//       list.songs.push(songData)
-//       return list.save()
+//     .then(recipe => {
+//       recipe.reviews.push(reviewData)
+//       return recipe.save()
 //     })
-//     .then(list => res.status(201).json({list: list}))
+//     .then(recipe => res.status(201).json({recipe: recipe}))
 //     .catch(next)
 // })
 //
-// router.delete('/songs/:id', requireToken, (req, res, next) => {
+// router.delete('/reviews/:id', requireToken, (req, res, next) => {
 //   const id = req.params.id
-//   List.findOne({ 'songs._id': id })
+//   Recipe.findOne({ 'reviews._id': id })
 //     .then(handle404)
-//     .then(list => {
-//       list.songs.id(id).remove()
-//       return list.save()
+//     .then(recipe => {
+//       recipe.reviews.id(id).remove()
+//       return recipe.save()
 //     })
 //     .then(() => res.sendStatus(204))
 //     .catch(next)
 // })
 //
-// // router.patch('/songs/:id', requireToken, removeBlanks, (req, res, next) => {
+// // router.patch('/reviews/:id', requireToken, removeBlanks, (req, res, next) => {
 // //   const id = req.params.id
-// //   const songData = req.body.song
-// //   List.findOne({'songs._id': id})
+// //   const reviewData = req.body.review
+// //   Recipe.findOne({'reviews._id': id})
 // //     .then(handle404)
-// //     .then(list => {
-// //       const song = list.songs.id(id)
-// //       song.set(songData)
-// //       return list.save()
+// //     .then(recipe => {
+// //       const review = recipe.reviews.id(id)
+// //       review.set(reviewData)
+// //       return recipe.save()
 // //     })
 // //     .then(() => res.sendStatus(200))
 // //     .catch(next)

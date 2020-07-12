@@ -13,20 +13,21 @@ Check out the Personal Cookbook here: https://dajana8127.github.io/cookbook-clie
 # Other Links:
 
 Front-end Repository: https://github.com/Dajana8127/cookbook-client.
+Heroku: https://warm-woodland-06371.herokuapp.com.
 
 # Technologies Used:
 
-JavaScript & jQuery
-Handlebars
-CSS/SASS
-Bootstrap
-HTML
-AJAX
-GitHub
-MongoDB
-Mongoose
-Express.js
-Node.js
+JavaScript & jQuery,
+Handlebars,
+CSS/SASS,
+Bootstrap,
+HTML,
+AJAX,
+GitHub,
+MongoDB,
+Mongoose,
+Express.js,
+Node.js,
 Heroku
 
 # User Stories
@@ -35,12 +36,12 @@ As a user, I want to be able to sign up. As a user, I want to be able to sign in
 
 # Wireframes
 
-![Wireframe 1](https://imgur.com/U7Xyhoa)
-![Wireframe 2](https://imgur.com/gp7qsOa)
+![Wireframe 1](https://i.imgur.com/U7Xyhoa.jpg)
+![Wireframe 2](https://i.imgur.com/gp7qsOa.jpg)
 
 # Entity Relationship Diagram
 
-![ERD](https://imgur.com/Y67zklL)
+![ERD](https://i.imgur.com/Y67zklL.jpg)
 
 # Planning & Development
 
